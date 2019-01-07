@@ -1,0 +1,33 @@
+tbody td {
+  text-align: center;
+}
+
+.tableLbl {
+  height: 30px;
+  background: #34495e;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  span {
+    color: #fff;
+    font-weight: bolder;
+    line-height: 30px;
+  }
+}
+
+.spacing {
+  height: 20px;
+}
+
+.navbar {
+  background-color: #3a3e46 !important;
+  padding: 0rem 1rem;
+  line-height: 40px;
+}
+
+.navbar-nav .active > .nav-link {
+  background: #676a70;
+}
+
+.nav-item {
+  padding: 0rem 1rem;
+}

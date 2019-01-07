@@ -1,63 +1,243 @@
 <div [@routerTransition]>
-    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
-    <div class="row">
-        <div class="col-md-12">
-            <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
-                    <div class="carousel-caption">
-                        <h3>{{slider.label}}</h3>
-                        <p>{{slider.text}}</p>
-                    </div>
-                </ng-template>
-            </ngb-carousel>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
-        </div>
-    </div>
-    <hr />
-    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
-    <hr />
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card card-default">
-                <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-                </div>
-                <!-- /.card-header -->
-                <app-timeline></app-timeline>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
-            <div class="card card-default mb-3">
-                <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
-                </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+  <div class="row">
+    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="50000" [label]="'RETAILERS TOTAL SUBMISSIONS'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="50" [label]="'RETAILERS PENDING'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="30000" [label]="'RETAILERS TOTAL APPROVED'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="20000" [label]="'RETAILERS TOTAL DENIED'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="50000" [label]="'GROWERS TOTAL SUBMISSIONS'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="50" [label]="'GROWERS PENDING'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="30000" [label]="'GROWERS TOTAL APPROVED'"></app-stat></div>
+    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="20000" [label]="'GROWERS TOTAL DENIED'"></app-stat></div>
+  </div>
 
-            <app-chat></app-chat>
-            <!-- /.card .chat-card -->
-        </div>
-        <!-- /.col-lg-4 -->
-    </div>
+  <div class="tableLbl"><span>&nbsp;&nbsp;GROWERS SUBMISSION FOR VALIDATION</span></div>
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+      <tr>
+        <th>TRANSACTION ID</th>
+        <th>MEMBER ID</th>
+        <th>GROWERS NAME</th>
+        <th>STORE NAME</th>
+        <th>INVOICE #</th>
+        <th>SUBMITTED DATE</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>12345678</td>
+        <td>1234-4567-9999-0000</td>
+        <td>JIM MORRIS SARMIENTO</td>
+        <td>MPC</td>
+        <td>0097890</td>
+        <td>11/19/2018</td>
+        <td>VIEW</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="spacing"></div>
+
+  <div class="tableLbl"><span>&nbsp;&nbsp;RETAILER SUBMISSION FOR VALIDATION</span></div>
+
+  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+      <tr>
+        <th>TRANSACTION ID</th>
+        <th>MEMBER ID</th>
+        <th>GROWERS NAME</th>
+        <th>STORE NAME</th>
+        <th>INVOICE #</th>
+        <th>SUBMITTED DATE</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>12345678</td>
+        <td>1234-4567-9999-0000</td>
+        <td>JIM MORRIS SARMIENTO</td>
+        <td>MPC</td>
+        <td>0097890</td>
+        <td>11/19/2018</td>
+        <td>VIEW</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="spacing"></div>
+  <div class="spacing"></div>
+  <div class="spacing"></div>
 </div>

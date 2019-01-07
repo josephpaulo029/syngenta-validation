@@ -1,0 +1,178 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item" (click)="clickPending()" [ngClass]="{ active: pendingActive }">
+        <a class="nav-link">PENDING <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" (click)="clickApproved()" [ngClass]="{ active: approvedActive }"><a class="nav-link">APPROVED</a></li>
+      <li class="nav-item" (click)="clickDenied()" [ngClass]="{ active: deniedActive }"><a class="nav-link">DENIED</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="tableLbl"><span>&nbsp;&nbsp;GROWERS SUBMISSION FOR VALIDATION</span></div>
+
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+  <thead>
+    <tr>
+      <th>TRANSACTION ID</th>
+      <th>MEMBER ID</th>
+      <th>GROWERS NAME</th>
+      <th>STORE NAME</th>
+      <th>INVOICE #</th>
+      <th>SUBMITTED DATE</th>
+      <th>ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>12345678</td>
+      <td>1234-4567-9999-0000</td>
+      <td>JIM MORRIS SARMIENTO</td>
+      <td>MPC</td>
+      <td>0097890</td>
+      <td>11/19/2018</td>
+      <td>VIEW</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="spacing"></div>

@@ -9,6 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+import { DataTablesModule } from 'angular-datatables';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -34,10 +35,13 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
+        AppRoutingModule,
+        DataTablesModule,
     ],
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,
+    ],
     providers: [AuthGuard],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

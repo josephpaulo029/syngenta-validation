@@ -9,9 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
+    now: number;
 
     constructor(private translate: TranslateService, public router: Router) {
-
+        setInterval(() => {
+            this.now = Date.now();
+        }, 1);
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
