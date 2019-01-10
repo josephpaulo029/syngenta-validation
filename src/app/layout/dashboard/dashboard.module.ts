@@ -4,6 +4,7 @@ import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+
 import {
     TimelineComponent,
     NotificationComponent,
@@ -11,7 +12,8 @@ import {
 } from './components';
 import { StatModule } from '../../shared';
 import { DataTablesModule } from 'angular-datatables';
-
+import { GrowersReportsModule } from '../growers-reports/growers-reports.module';
+import { RetailerReportsModule } from '../retailer-reports/retailer-reports.module';
 @NgModule({
     imports: [
         CommonModule,
@@ -19,13 +21,15 @@ import { DataTablesModule } from 'angular-datatables';
         NgbAlertModule,
         DashboardRoutingModule,
         StatModule,
-        DataTablesModule
+        DataTablesModule,
+        GrowersReportsModule,
+        RetailerReportsModule,
     ],
     declarations: [
         DashboardComponent,
         TimelineComponent,
         NotificationComponent,
-        ChatComponent
-    ]
+        ChatComponent,
+    ],
 })
 export class DashboardModule {}

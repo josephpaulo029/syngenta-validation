@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="!dashboard && !viewDataActive">
   <!-- <a class="navbar-brand" href="#">Navbar</a> -->
   <button
     class="navbar-toggler"
@@ -22,76 +22,124 @@
   </div>
 </nav>
 
-<div class="tableLbl"><span>&nbsp;&nbsp;RETAILER SUBMISSION FOR VALIDATION</span></div>
+<div class="tableLbl" *ngIf="pendingActive"><span>&nbsp;&nbsp;RETAILER SUBMISSION FOR VALIDATION</span></div>
+<div class="tableLbl" *ngIf="approvedActive || deniedActive"><span>&nbsp;&nbsp;LIST OF TRANSACTIONS</span></div>
 
-<table datatable [dtOptions]="dtOptions" class="row-border hover">
-  <thead>
-    <tr>
-      <th>TRANSACTION ID</th>
-      <th>MEMBER ID</th>
-      <th>GROWERS NAME</th>
-      <th>STORE NAME</th>
-      <th>INVOICE #</th>
-      <th>SUBMITTED DATE</th>
-      <th>ACTION</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>12345678</td>
-      <td>1234-4567-9999-0000</td>
-      <td>JIM MORRIS SARMIENTO</td>
-      <td>MPC</td>
-      <td>0097890</td>
-      <td>11/19/2018</td>
-      <td>VIEW</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
+<div [hidden]="viewDataActive">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+      <tr *ngIf="pendingActive">
+        <th>TRANSACTION ID</th>
+        <th>MEMBER ID</th>
+        <th>RETAILER NAME</th>
+        <th>INVOICE #</th>
+        <th>SALES AMOUNT</th>
+        <th>SUBMITTED DATE</th>
+        <th>ACTION</th>
+      </tr>
+      <tr *ngIf="approvedActive">
+        <th>TRANSACTION ID</th>
+        <th>MEMBER ID</th>
+        <th>GROWERS NAME</th>
+        <th>INVOICE #</th>
+        <th>SALES AMOUNT</th>
+        <th>POINTS EARNED</th>
+        <th>VALIDATED DATE</th>
+        <th>ACTION</th>
+      </tr>
+      <tr *ngIf="deniedActive">
+        <th>TRANSACTION ID</th>
+        <th>MEMBER ID</th>
+        <th>GROWERS NAME</th>
+        <th>INVOICE #</th>
+        <th>SALES AMOUNT</th>
+        <th>POINTS EARNED</th>
+        <th>VALIDATED DATE</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [hidden]="!pendingActive" *ngFor="let retail of retailersData" (click)="selectData(retail)">
+        <td>{{ retail.id || '-' }}</td>
+        <td>{{ retail.retailer || '-' }}</td>
+        <td>{{ retail.retailersName || '-' }}</td>
+        <td>{{ retail.invoice || '-' }}</td>
+        <td>{{ retail.salesAmt || '-' }}</td>
+        <td>{{ retail.dateSubmitted || '-' }}</td>
+        <td class="text-center">VIEW</td>
+      </tr>
+      <tr [hidden]="!approvedActive || !deniedActive" *ngFor="let retail2 of retailersData2" (click)="selectData(retail2)">
+        <td>{{ retail2.id || '-' }}</td>
+        <td>{{ retail2.grower || '-' }}</td>
+        <td>{{ retail2.growersName || '-' }}</td>
+        <td>{{ retail2.invoice || '-' }}</td>
+        <td>{{ retail2.salesAmt || '-' }}</td>
+        <td>{{ retail2.points || '-' }}</td>
+        <td>{{ retail2.modified || '-' }}</td>
+        <td class="text-center">VIEW</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
+<h5 class="goBack" *ngIf="viewDataActive" (click)="goBack()">GO BACK</h5>
+<div *ngIf="viewDataActive">
+  <div class="viewDataStyle"><span>&nbsp;&nbsp;TRANSACTION DETAILS</span></div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">TRANSACTION ID</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.id || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">RETAILER</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.retailerName || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">MEMBER ID</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.retailer || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">INVOICE NUMBER</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.invoiceNo || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">INVOICE DATE</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.invoiceDate || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">FIELD FORCE</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.fielForce || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">DISTRIBUTOR</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.distributor || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">TOTAL GROSS SALES</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.totalgrossSales || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">ATTACHED INVOICE</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.attachedInvoice || '-' }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">TOTAL POINTS EARNED</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.points || 0 }}</div>
+  </div>
+  <div class="row viewDataCol3">
+    <div class="col col-2">STATUS</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.status }}</div>
+  </div>
+  <div class="row viewDataProductsheader">
+    <div class="col col-3">PRODUCT NAME</div>
+    <div class="col col-3">QUANTITY</div>
+    <div class="col col-3">AMOUNT</div>
+    <div class="col col-3">EARNED POINTS</div>
+  </div>
+  <div class="row viewDataProductsbody" *ngFor="let prod of viewData.products">
+    <div class="col col-3">{{ prod.productName || '-' }}</div>
+    <div class="col col-3">{{ prod.quantity || '-' }}</div>
+    <div class="col col-3">{{ prod.amount || '-' }}</div>
+    <div class="col col-3">{{ prod.points || '-' }}</div>
+  </div>
+</div>
 <div class="spacing"></div>

@@ -93,3 +93,15 @@ $topnav-background-color: #222;
         border: 2px solid #fff;
     }
 }
+
+.centerAlign {
+    margin: 0 auto;
+    position: relative;
+    top: 30%;
+    transform: translateY(50%);
+}
+
+.card-body {
+    // background-color: transparent;
+    background-color: #495057;
+}

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { ValidationService } from './../../services/validation.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,12 +11,43 @@ import { routerTransition } from '../../router.animations';
 })
 export class DashboardComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  growersData: any;
+  retailersData: any;
+  dashboardStatus: boolean;
 
-  constructor() {}
+  constructor(private validationService: ValidationService) {}
 
   ngOnInit(): void {
+    this.loadGrowersData();
+    this.loadRetailersData();
+    this.dashboardStatus = true;
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
+  }
+
+  loadGrowersData() {
+    Promise.resolve(this.validationService.getGrowersData())
+      .then(data => {
+        this.growersData = data;
+        this.dtTrigger.next();
+        console.log(data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  loadRetailersData() {
+    Promise.resolve(this.validationService.getRetailersData())
+      .then(data => {
+        this.retailersData = data;
+        this.dtTrigger.next();
+        console.log(data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 }

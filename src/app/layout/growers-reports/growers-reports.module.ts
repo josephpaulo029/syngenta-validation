@@ -8,6 +8,7 @@ import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   imports: [CommonModule, NgbCarouselModule, NgbAlertModule, GrowersReportsRoutingModule, DataTablesModule],
-  declarations: [GrowersReportsComponent]
+  declarations: [GrowersReportsComponent],
+  exports: [GrowersReportsComponent]
 })
 export class GrowersReportsModule {}
