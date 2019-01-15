@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadGrowersData() {
-    Promise.resolve(this.validationService.getGrowersData())
+    Promise.resolve(this.validationService.getGrowersData(2))
       .then(data => {
         this.growersData = data;
         this.dtTrigger.next();
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadRetailersData() {
-    Promise.resolve(this.validationService.getRetailersData())
+    Promise.resolve(this.validationService.getRetailersData(2))
       .then(data => {
         this.retailersData = data;
         this.dtTrigger.next();

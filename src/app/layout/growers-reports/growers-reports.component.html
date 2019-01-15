@@ -1,14 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="!dashboard && !viewDataActive">
   <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavDropdown"
-    aria-controls="navbarNavDropdown"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -25,7 +18,7 @@
 <div class="tableLbl" *ngIf="pendingActive"><span>&nbsp;&nbsp;GROWERS SUBMISSION FOR VALIDATION</span></div>
 <div class="tableLbl" *ngIf="approvedActive || deniedActive"><span>&nbsp;&nbsp;LIST OF TRANSACTIONS</span></div>
 
-<div [hidden]="viewDataActive">
+<div class="growersTbl" [hidden]="viewDataActive">
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr *ngIf="pendingActive">
@@ -95,31 +88,31 @@
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">MEMBER ID</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.grower || '-' }}</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.memberID || '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">RETAILER</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.growersName || '-' }}</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.retailer || '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">FIELD FORCE</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.growersName || '-' }}</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.fieldForce || '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">INVOICE NUMBER</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.growersName || '-' }}</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.invoiceNo || '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">INVOICE DATE</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.growersName || '-' }}</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.invoiceDate || '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">TOTAL GROSS SALES</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.growersName || '-' }}</div>
+    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.grossSales || '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">ATTACHED INVOICE</div>
-    <div class="col col-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.growersName || '-' }}</div>
+    <div class="col col-10" style="cursor: pointer;" (click)="viewAttachment(attachment)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ viewData.attachment ? 'VIEW ATTACHMENT': '-' }}</div>
   </div>
   <div class="row viewDataCol3">
     <div class="col col-2">TOTAL POINTS EARNED</div>
@@ -134,15 +127,72 @@
   <div class="row viewDataProductsbody" *ngFor="let prod of viewData.products">
     <div class="col col-3">{{ prod.productName || '-' }}</div>
     <div class="col col-3">{{ prod.quantity || '-' }}</div>
-    <div class="col col-3">{{ prod.amount || '-' }}</div>
+    <div class="col col-3"><input type="text" ></div>
     <div class="col col-3">{{ prod.points || '-' }}</div>
   </div>
 
   <div class="spacing"></div>
 
   <div class="row btnStyles">
-    <button type="button" class="btn btn-success" (click)="approveTrans()">APPROVED</button>
-    <button type="button" class="btn btn-danger" (click)="denyTrans()">DENIED</button>
+    <button type="button" class="btn btn-success" (click)="approveTrans(approved, true)">APPROVED</button>
+    <button type="button" class="btn btn-danger" (click)="denyTrans(deny)">DENIED</button>
   </div>
 </div>
 <div class="spacing"></div>
+
+<ng-template #approved let-modal let-c="close()" let-d="dismiss()">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">PURCHASES {{modalHeader}}</h4>
+    <button *ngIf="false" type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Grower will be notified via SMS</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" ngbAutofocus (click)="c">CLOSE</button>
+  </div>
+</ng-template>
+
+<ng-template #deny let-modal let-c="close()" let-d="dismiss()">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">TYPE REASON</h4>
+    <button *ngIf="false" type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <textarea rows="4" cols="50"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" ngbAutofocus (click)="c;approveTrans(approved, false)">SUBMIT</button>
+  </div>
+</ng-template>
+
+<ng-template #attachment let-modal let-c="close()" let-d="dismiss()">
+  <div *ngIf="false" class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">TYPE REASON</h4>
+    <button *ngIf="false" type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+          <img src="{{viewData.attachment}}" (click)="c"/>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="false" class="modal-footer">
+    <button *ngIf="false" type="button" class="btn btn-success" ngbAutofocus (click)="c;approveTrans(approved, false)">SUBMIT</button>
+  </div>
+</ng-template>

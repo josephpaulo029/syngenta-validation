@@ -1,13 +1,29 @@
 <div [@routerTransition]>
   <div class="row">
-    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="this.retailersData.length" [label]="'RETAILERS TOTAL SUBMISSIONS'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="0" [label]="'RETAILERS PENDING'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="0" [label]="'RETAILERS TOTAL APPROVED'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'orange'" [count]="0" [label]="'RETAILERS TOTAL DENIED'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="this.growersData.length" [label]="'GROWERS TOTAL SUBMISSIONS'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="0" [label]="'GROWERS PENDING'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="0" [label]="'GROWERS TOTAL APPROVED'"></app-stat></div>
-    <div class="col-xl"><app-stat [bgClass]="'green'" [count]="0" [label]="'GROWERS TOTAL DENIED'"></app-stat></div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'orange'" [count]="this.retailersData.length ? this.retailersData.length: 0 " [label]="'RETAILERS TOTAL SUBMISSIONS'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'orange'" [count]="0" [label]="'RETAILERS PENDING'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'orange'" [count]="0" [label]="'RETAILERS TOTAL APPROVED'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'orange'" [count]="0" [label]="'RETAILERS TOTAL DENIED'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'green'" [count]="this.growersData.length ? this.growersData.length: 0 " [label]="'GROWERS TOTAL SUBMISSIONS'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'green'" [count]="0" [label]="'GROWERS PENDING'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'green'" [count]="0" [label]="'GROWERS TOTAL APPROVED'"></app-stat>
+    </div>
+    <div class="col-xl">
+      <app-stat [bgClass]="'green'" [count]="0" [label]="'GROWERS TOTAL DENIED'"></app-stat>
+    </div>
   </div>
 
   <!-- <div class="tableLbl"><span>&nbsp;&nbsp;GROWERS SUBMISSION FOR VALIDATION</span></div> -->

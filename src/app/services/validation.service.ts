@@ -9,17 +9,15 @@ interface myData {
   providedIn: 'root'
 })
 export class ValidationService {
-  growersData: any;
 
   constructor(private http: HttpClient) {
-    this.getGrowersData();
   }
 
-  getGrowersData() {
+  getGrowersData(info) {
+    let status = info;
     return new Promise(resolve => {
-      this.http.get<myData>('http://localhost:3000/api/rewards/growers/claim').subscribe(
+      this.http.get<myData>('http://localhost:3000/api/rewards/growers/claim/'+status).subscribe(
         data => {
-          this.growersData = data;
           resolve(data);
           // console.log('growersData', data);
         },
@@ -30,9 +28,10 @@ export class ValidationService {
     });
   }
 
-  getRetailersData() {
+  getRetailersData(info) {
+    let status = info;
     return new Promise(resolve => {
-      this.http.get<myData>('http://localhost:3000/api/rewards/retailers/claim').subscribe(
+      this.http.get<myData>('http://localhost:3000/api/rewards/retailers/claim/'+status).subscribe(
         data => {
           resolve(data);
           // console.log('retailersData', data);

@@ -21,13 +21,14 @@ thead tr {
   color: #0ca126;
   font-size: 1rem;
   font-weight: bolder;
+  cursor: pointer;
 }
 
 .tableLbl {
   height: 30px;
   background: #34495e;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   span {
     color: #fff;
     font-weight: bolder;
@@ -104,6 +105,21 @@ thead tr {
   }
 }
 
+.btnStyles {
+  button {
+    padding: 10px 20px;
+    margin: 0px 15px;
+  }
+
+  .btn-success {
+    background: #459f67;
+  }
+
+  .btn-danger {
+    background: #fc1818;
+  }
+}
+
 .spacing {
   height: 20px;
 }
@@ -120,4 +136,33 @@ thead tr {
 
 .nav-item {
   padding: 0rem 1rem;
+}
+
+.retailersTbl {
+  background: #fff !important;
+  padding: 20px;
+}
+
+.modal-header, .modal-body, .modal-footer {
+  margin: 0 auto;
+  border-bottom: 0px solid #e9ecef;
+  border-top: 0px solid #e9ecef;
+  color: #fff;
+}
+
+.modal-body {
+  .labelStyle {
+    text-align: center;
+    font-size: 1rem;
+    padding: 0px 10%;
+  }
+}
+
+.darkModal .modal-content {
+  background: #45494e !important;
+}
+
+.transparent .modal-content {
+  background: transparent !important;
+  border: 0px solid rgba(0, 0, 0, 0.2);
 }
